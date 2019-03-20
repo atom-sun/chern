@@ -10,29 +10,20 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     14430,        383]
-NotebookOptionsPosition[     13934,        367]
-NotebookOutlinePosition[     14289,        383]
-CellTagsIndexPosition[     14246,        380]
+NotebookDataLength[     16790,        444]
+NotebookOptionsPosition[     16386,        429]
+NotebookOutlinePosition[     16740,        445]
+CellTagsIndexPosition[     16697,        442]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
 Cell[BoxData[{
  RowBox[{
-  RowBox[{"Clear", "[", "\"\<Global`*\>\"", "]"}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"Remove", "[", "\"\<Global`*\>\"", "]"}], ";"}]}], "Input",
- CellLabel->
-  "In[1004]:=",ExpressionUUID->"13e77ee2-556d-4798-ba97-2cdac6fbc65c"],
-
-Cell[BoxData[{
- RowBox[{
   RowBox[{
    RowBox[{"chern", "[", 
-    RowBox[{"hamiltkxky_", ",", "ndiscretized_"}], "]"}], ":=", 
-   "\[IndentingNewLine]", 
+    RowBox[{"hamiltkxky_", ",", 
+     RowBox[{"ndiscretized_:", "16"}]}], "]"}], ":=", "\[IndentingNewLine]", 
    RowBox[{"Module", "[", "\[IndentingNewLine]", 
     RowBox[{
      RowBox[{"{", 
@@ -58,32 +49,30 @@ Cell[BoxData[{
         RowBox[{"qqx", ",", "qqy"}], "}"}], "=", 
        RowBox[{"disCretize", "[", "nQq", "]"}]}], ";", "\[IndentingNewLine]", 
       
-      RowBox[{"Assert", "[", 
+      RowBox[{"If", "[", 
        RowBox[{
-        RowBox[{"HermitianMatrixQ", "[", 
-         RowBox[{"hk", "@@", 
-          RowBox[{"{", 
-           RowBox[{"0", ",", "0"}], "}"}]}], "]"}], ",", 
-        "\"\<Not Hermittian Matrix at {0,0}\>\""}], "]"}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{"Assert", "[", 
-       RowBox[{
-        RowBox[{"AllTrue", "[", 
+        RowBox[{
+         RowBox[{"check", "[", "hk", "]"}], "===", "0"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"cnlist", "=", 
+         RowBox[{"ConstantArray", "[", 
+          RowBox[{"0", ",", 
+           RowBox[{"Length", "[", 
+            RowBox[{"hk", "@@", 
+             RowBox[{"{", 
+              RowBox[{"0.", ",", "0."}], "}"}]}], "]"}]}], "]"}]}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
          RowBox[{
-          RowBox[{"hk", "@@", 
-           RowBox[{"{", 
-            RowBox[{"0", ",", "0"}], "}"}]}], ",", "NumericQ", ",", "2"}], 
-         "]"}], ",", "\"\<NumericQ fails at {0,0}\>\""}], "]"}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{
-       RowBox[{"{", 
-        RowBox[{"hErg", ",", "hVec"}], "}"}], "=", 
-       RowBox[{"diagn", "[", 
-        RowBox[{"hk", ",", "qqx", ",", "qqy"}], "]"}]}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{"cnlist", "=", 
-       RowBox[{"calcChern", "[", "hVec", "]"}]}], ";", "\[IndentingNewLine]", 
-      "cnlist"}]}], "]"}]}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+          RowBox[{"{", 
+           RowBox[{"hErg", ",", "hVec"}], "}"}], "=", 
+          RowBox[{"diagn", "[", 
+           RowBox[{"hk", ",", "qqx", ",", "qqy"}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"cnlist", "=", 
+          RowBox[{"calcChern", "[", "hVec", "]"}]}], ";"}]}], 
+       "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", "cnlist"}]}],
+     "]"}]}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"funcQ", "[", 
    RowBox[{
@@ -103,6 +92,78 @@ Cell[BoxData[{
  RowBox[{
   RowBox[{
    RowBox[{"funcQ", "[", "_", "]"}], ":=", "False"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"check", "[", "hk_", "]"}], ":=", 
+   RowBox[{"Block", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"$AssertFunction", "=", 
+        RowBox[{
+         RowBox[{"Throw", "[", 
+          RowBox[{"{", "##", "}"}], "]"}], "&"}]}], ",", 
+       "\[IndentingNewLine]", "kx", ",", "ky", ",", "hamkxky", ",", "ndim"}], 
+      "\[IndentingNewLine]", "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"hamkxky", "=", 
+       RowBox[{"hk", "@@", 
+        RowBox[{"{", 
+         RowBox[{"kx", ",", "ky"}], "}"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"ndim", "=", 
+       RowBox[{"Length", "[", "hamkxky", "]"}]}], ";", "\[IndentingNewLine]", 
+      
+      RowBox[{"Assert", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Dimensions", "[", 
+          RowBox[{"Dimensions", "[", "hamkxky", "]"}], "]"}], "===", 
+         RowBox[{"{", "2", "}"}]}], ",", "\"\<input not matrix\>\""}], "]"}], 
+      ";", "\[IndentingNewLine]", 
+      RowBox[{"Assert", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"Dimensions", "[", "hamkxky", "]"}], "[", 
+          RowBox[{"[", "2", "]"}], "]"}], "===", "ndim"}], ",", 
+        "\"\<input not square matrix\>\""}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Assert", "[", 
+       RowBox[{
+        RowBox[{"AllTrue", "[", 
+         RowBox[{
+          RowBox[{"hk", "@@", 
+           RowBox[{"{", 
+            RowBox[{"0", ",", "0"}], "}"}]}], ",", "NumericQ", ",", "2"}], 
+         "]"}], ",", "\"\<NumericQ fails at {0,0}\>\""}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Assert", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Chop", "[", 
+          RowBox[{"ComplexExpand", "[", 
+           RowBox[{"hamkxky", "-", 
+            RowBox[{"ConjugateTranspose", "[", "hamkxky", "]"}]}], "]"}], 
+          "]"}], "===", 
+         RowBox[{"ConstantArray", "[", 
+          RowBox[{"0", ",", 
+           RowBox[{"{", 
+            RowBox[{"ndim", ",", "ndim"}], "}"}]}], "]"}]}], ",", 
+        "\"\<Not Hermittian matrix\>\""}], "]"}], ";", "\[IndentingNewLine]", 
+      
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Chop", "[", 
+          RowBox[{"ComplexExpand", "[", 
+           RowBox[{"hamkxky", "-", 
+            RowBox[{"Transpose", "[", "hamkxky", "]"}]}], "]"}], "]"}], "===", 
+         RowBox[{"ConstantArray", "[", 
+          RowBox[{"0", ",", 
+           RowBox[{"{", 
+            RowBox[{"ndim", ",", "ndim"}], "}"}]}], "]"}]}], ",", "0", ",", 
+        "1"}], "]"}]}]}], "\[IndentingNewLine]", "]"}]}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
@@ -342,17 +403,19 @@ Cell[BoxData[{
          RowBox[{"nqqx", "-", "1"}]}], "}"}]}], "]"}], ";", 
      "\[IndentingNewLine]", 
      RowBox[{"cnlist", "/=", 
-      RowBox[{"2", "\[Pi]"}]}], ";", "\[IndentingNewLine]", "cnlist"}]}], 
-   "]"}]}]}], "Input",
- CellChangeTimes->{{3.76199016378124*^9, 3.761990182380085*^9}, {
-  3.761990360389316*^9, 3.7619903835747423`*^9}, {3.761990558675428*^9, 
-  3.761990570244439*^9}, {3.761990760895658*^9, 3.761990827658987*^9}, {
-  3.7619908752202177`*^9, 3.761990880997086*^9}, {3.761990930626512*^9, 
-  3.761990932904727*^9}, {3.76199140170997*^9, 3.761991403372979*^9}, {
-  3.761991500683404*^9, 3.761991501680372*^9}, {3.7619934307566853`*^9, 
-  3.761993450107222*^9}},
- CellLabel->
-  "In[1006]:=",ExpressionUUID->"401c9a23-7281-4922-8007-463c91a4c0a7"],
+      RowBox[{"2", "\[Pi]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Chop", "[", "cnlist", "]"}]}]}], "]"}]}]}], "Input",
+ CellChangeTimes->CompressedData["
+1:eJwlz08ow3EYBvC1A6WtSFtqy9pRs5S0+Z/NslpLkqRYyTaj/RE2m4NoNReN
+pWZiZKRwcJuWZIkpNYqStbYpVmwsZYgdxu/5Orx9enp7n3r5AyOdWjqNRuNS
+A19+bVJj4atkpyIsg3ILoxcqNO8qyFm7HYdjN3ILbNjlOqGBbXHDAoZuFfKf
+eV6oZnRtwtmsl1gaEMXJ/Zv+34Q7Bb0hP/FMFImaKFWm1jjk0YMmM+X5scIM
+vwM2G6zpy0xC8bXDDWP2ryVY7tBH4HoqlCB749Qj7PE7ibpRdR76PjxsC2V3
+9IcDs0mnGF425ppgmbFFCm2soTbYLssRdfn+Drj8KVTD7aOsAc5kqq2wOcjc
+IL3zBT6SB5mH0CqUnEBlbVowR7lyIK+ExeEFMVRuqergRQljwoV/nqqIV8n9
+U6ixp4meB9cdrNcORyBrbzoGF4sE9/AP9lzSMg==
+  "],
+ CellLabel->"In[1]:=",ExpressionUUID->"401c9a23-7281-4922-8007-463c91a4c0a7"],
 
 Cell[BoxData[
  RowBox[{"Save", "[", 
@@ -361,12 +424,11 @@ Cell[BoxData[
     RowBox[{"NotebookDirectory", "[", "]"}], "<>", "\"\<chern.m\>\""}], ",", 
    "chern"}], "]"}]], "Input",
  CellChangeTimes->{{3.761994058961444*^9, 3.761994071917843*^9}, {
-  3.761994176263785*^9, 
-  3.76199417934072*^9}},ExpressionUUID->"eb00f539-b068-45cc-9168-\
-e3929f4f8909"]
+  3.761994176263785*^9, 3.76199417934072*^9}},
+ CellLabel->"In[9]:=",ExpressionUUID->"eb00f539-b068-45cc-9168-e3929f4f8909"]
 },
 WindowSize->{808, 755},
-WindowMargins->{{Automatic, 233}, {Automatic, 34}},
+WindowMargins->{{Automatic, 42}, {28, Automatic}},
 FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
 2018)",
 StyleDefinitions->"Default.nb"
@@ -382,9 +444,8 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 273, 7, 52, "Input",ExpressionUUID->"13e77ee2-556d-4798-ba97-2cdac6fbc65c"],
-Cell[834, 29, 12751, 325, 1606, "Input",ExpressionUUID->"401c9a23-7281-4922-8007-463c91a4c0a7"],
-Cell[13588, 356, 342, 9, 30, "Input",ExpressionUUID->"eb00f539-b068-45cc-9168-e3929f4f8909"]
+Cell[558, 20, 15461, 397, 1942, "Input",ExpressionUUID->"401c9a23-7281-4922-8007-463c91a4c0a7"],
+Cell[16022, 419, 360, 8, 88, "Input",ExpressionUUID->"eb00f539-b068-45cc-9168-e3929f4f8909"]
 }
 ]
 *)
