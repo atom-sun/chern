@@ -72,7 +72,7 @@ class Chern(object):
         self._qq = self.discretize()
 
     def __repr__(self):
-        return f"{type(self).__name__}({self.hk.name}:{self.n_discretized})"
+        return f"{type(self).__name__}({self.hk.name}:{self.n_discretized}x{self.n_discretized})"
 
     @property
     def hk(self):

@@ -33,7 +33,7 @@ def haldane_honeycomb(kx, ky, m=0.5, phi=np.pi/2):
 
 
 if __name__ == "__main__":
-    from chern.chern import Hamiltonian, Chern
+    from chern import Hamiltonian, Chern
     from functools import partial
     import argparse
     parser = argparse.ArgumentParser()
