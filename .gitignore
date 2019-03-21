@@ -17,3 +17,5 @@ tmp/
 .vscode
 cmake-build*
 *.clang-format
+
+*.ipynb_checkpoints/
