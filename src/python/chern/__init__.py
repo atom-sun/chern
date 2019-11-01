@@ -7,13 +7,15 @@ def triv(kx, ky):
 
 
 def check(hkfunc):
-    """
-    Check the input if callable is
+    """Check the input if callable is
+
         * square matrix on random input hkfunc(kx, ky)
         * hermitian
         * real
+
     :param hkfunc: callable to accept two positional args.
     :return: 0 if not symmetric; 1 if symmetric.
+
     """
     xx = np.random.rand(32) * 2 * np.pi - np.pi
     yy = np.random.rand(32) * 2 * np.pi - np.pi
@@ -29,10 +31,10 @@ def check(hkfunc):
 
 
 class Hamiltonian(object):
-    """Hamiltonian container.
-    """
+    """Two-dimensional Hamiltonian.
 
-    def __init__(self, hk=triv, name="myhk"):
+    """
+    def __init__(self, hk=triv, name=None):
         assert callable(hk)
         r = check(hk)
         if r == 0:
@@ -63,7 +65,8 @@ class Hamiltonian(object):
 
 
 class Chern(object):
-    """Chern container.
+    """Chern class.
+
     """
 
     def __init__(self, hk=None, n_discretized=16):
@@ -72,7 +75,9 @@ class Chern(object):
         self._qq = self.discretize()
 
     def __repr__(self):
-        return f"{type(self).__name__}({self.hk.name}:{self.n_discretized}x{self.n_discretized})"
+        name = self.hk.name if self.hk is not None else None
+        return f"{type(self).__name__}({name}:" \
+               f"{self.n_discretized}x{self.n_discretized})"
 
     @property
     def hk(self):
@@ -93,10 +98,12 @@ class Chern(object):
         return qq
 
     def diagn(self):
-        """
-        diagonalize self.hk Hamiltonian across all discretized brillioun zone.
+        """Diagonalize `self.hk` Hamiltonian across all discretized Brillioun
+        zone.
+
         :return: corresponding eigen-energy and eigen-states on each (kx, ky),
         sorted ascendant.
+
         """
         dim = len(self.qq)
         # hErg = np.empty((dim, dim, self.hk.dim))
@@ -116,10 +123,11 @@ class Chern(object):
         return hErg, hVec
 
     def calc_chern(self):
-        """
-        Calculate the 1st Chern number of given Hamiltonian. (self.hk).
+        """Calculate the 1st Chern number of given Hamiltonian. (self.hk).
         Using Japanese algorithm (2005).
+
         :return: list of Chern number of all bands. Should summed to 0.
+
         """
         if self.hk is None:
             print("Hamiltonian not given")
@@ -139,10 +147,11 @@ class Chern(object):
 
 
 def diagn_sort(mat):
-    """
-    Diagonalize matrix.
+    """Diagonalize matrix.
+
     :param mat: matrix to be diagonalized.
     :return: ((val, vec), ...), sorted ascendant according to val.
+
     """
     vals, vecs = np.linalg.eig(mat)
     idx = vals.argsort()
@@ -152,10 +161,12 @@ def diagn_sort(mat):
 
 
 def calc_chern(hVec):
-    """
-    Calculate 1st Chern number given eigen-vectors. Using Japanese algorithm (2005).
+    """Calculate 1st Chern number given eigen-vectors. Using Japanese algorithm
+    (2005).
+
     :param hVec: eigen-vectors of all band (assuming gapless).
     :return: list of Chern number of all bands. Should summed to 0.
+
     """
     hVec = np.array(hVec)
     dimy, dimx, nlevels, _ = hVec.shape
@@ -180,11 +191,12 @@ def calc_chern(hVec):
 
 
 def chop(array, tol=1e-7):
-    """
-    realize Mathematica Chop[].
+    """Realize Mathematica Chop[].
+
     :param array: 1D array.
     :param tol: tolerance to be chopped. default to 1e-7
     :return: chopped array. (original array alse modified.)
+
     """
     for i in range(len(array)):
         a = array[i]

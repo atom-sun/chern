@@ -1,10 +1,9 @@
 import unittest
 import numpy as np
-from chern.chern import Hamiltonian, Chern, check
+from chern import Hamiltonian, Chern, check
 
 
 class TestHamiltonian(unittest.TestCase):
-
     def test_create_hamiltonian(self):
         hk = Hamiltonian()
         kx = np.random.rand() * 2 * np.pi - np.pi
@@ -22,7 +21,7 @@ class TestChern(unittest.TestCase):
 
     def test_discretize(self):
         cn = Chern()
-        qq, _ = cn.discretize()
+        qq = cn.discretize()
         self.assertEqual(qq[0], -np.pi)
         self.assertEqual(qq[-1], np.pi)
         dq = qq[1] - qq[0]
@@ -99,5 +98,4 @@ class TestReal(unittest.TestCase):
 
     def test_real_chern(self):
         hk = Hamiltonian(self.realhk, name="realhk")
-        print(Chern(hk).chern)
         self.assertTrue(np.allclose(Chern(hk).chern, np.zeros(3)))

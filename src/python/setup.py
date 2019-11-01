@@ -1,7 +1,7 @@
 import setuptools
 
-with open("README.md", "r") as fh:
-    long_description = fh.read()
+# with open("README.md", "r") as fh:
+#     long_description = fh.read()
 
 
 def find_packages_with_dir(src_base, exclude):
@@ -20,7 +20,7 @@ setuptools.setup(
     author="Ning Sun",
     author_email="ningsun.atom@gmail.com",
     description="Chern number calculator for 2D materials",
-    long_description=long_description,
+    # long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/atom-sun/chern.git",
     # packages=setuptools.find_packages(),
