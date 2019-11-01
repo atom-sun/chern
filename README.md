@@ -44,7 +44,8 @@ INTEGERs**. If it's not, the model possibly be gapless --- which is, by the
 theory, not allowed to calculate the Chern for gapless bands in the first place.
 
 #### Examples
-* See Example [haldane_honeycomb](src/Mathematica/test_haldane.nb)
+* See example [easy_chern_insulator](examples/easy.m)
+* See example [haldane_honeycomb](examples/haldane.m)
 
 ### python version
 #### Installing and getting started
@@ -54,7 +55,7 @@ cd python/chern
 pip install .
 python examples/haldane.py
 ```
-See also [example](examples/example.ipynb).
+See also [haldane](examples/haldane.ipynb).
 
 #### Uninstalling
 ```bash
@@ -71,7 +72,7 @@ or
 python examples/haldane.py --m 0.5 --phi 0
 ```
 to specify a set of $$\{m, \phi\}$$ values of haldane model. 
-Also in [example:haldane](examples/example.ipynb).
+Also in [example:haldane](examples/haldane.ipynb).
         
 ## Reference
 The algorithm is given by [chern 2005](
