@@ -1,4 +1,5 @@
 (* Mathematica Source File *)
+(* Chern Calculator tutorial *)
 (* :Author: Ning Sun *)
 (* :Date: 2019-11-01 *)
 (* :Mathematica Version: 12.0 *)
@@ -8,6 +9,18 @@ Clear["Global`*"];
 Remove["Global`*"];
 SetDirectory[NotebookDirectory[]];
 << "../src/Mathematica/chern.m";
+
+
+(* show context path *)
+$ContextPath
+
+
+(* show namespace *)
+Names["ChernCalculator`*"]
+
+
+(* show usage or docstring *)
+?chern
 
 
 (* Preferred input form *)

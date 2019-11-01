@@ -6,7 +6,7 @@ In
 * python (python3.7.2)
 
 ## Usage
-### Mathematica version
+### Wolfram Mathematica
 The Chern calculator is generated in chern.nb notebook. After then, a chern.m 
 is generated for the next time use. One can either
 * Evaluate chern.nb each time in current (working) kernal, or
@@ -39,15 +39,17 @@ chern[hk, *discretized*]
     which means that after we assign values to {kx, ky}, the Hamiltonian should be
     numeric in all its entries.
 
-* It returns the list of Chern number for all bands, which should be **EXACT
+* It returns the list of Chern number for all bands, which should be **EXACTLY
 INTEGERs**. If it's not, the model possibly be gapless --- which is, by the 
 theory, not allowed to calculate the Chern for gapless bands in the first place.
 
 #### Examples
-* See example [easy_chern_insulator](examples/easy.m)
-* See example [haldane_honeycomb](examples/haldane.m)
+* See tutorial for the Mathematica version 
+[tutorial:mathematica](examples/tutorial.m)
+* See example of the Haldane model in Mathematica 
+[example:haldane.m](examples/haldane.m)
 
-### python version
+### python
 #### Installing and getting started
 ```bash
 git clone https://github.com/atom-sun/chern.git
@@ -55,7 +57,7 @@ cd python/chern
 pip install .
 python examples/haldane.py
 ```
-See also [haldane](examples/haldane.ipynb).
+See [tutorial:python](examples/haldane.py) for the script.
 
 #### Uninstalling
 ```bash
@@ -72,10 +74,10 @@ or
 python examples/haldane.py --m 0.5 --phi 0
 ```
 to specify a set of $$\{m, \phi\}$$ values of haldane model. 
-Also in [example:haldane](examples/haldane.ipynb).
+Also in [example:haldane.ipynb](examples/haldane.ipynb).
         
 ## Reference
-The algorithm is given by [chern 2005](
+The algorithm is given by a Japanese group in [chern(2005)](
             https://journals.jps.jp/doi/10.1143/JPSJ.74.1674) this paper. 
 Credits to them.
 
